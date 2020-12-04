@@ -5,9 +5,9 @@ from sys import platform as _platform
 import os
 
 GEN_SEED = int(random.SystemRandom().random() * 100)
-NUM_ROWS   = 10
-NUM_COLS   = 10
-NUM_MINES  = 10
+NUM_ROWS   = 33
+NUM_COLS   = 33
+NUM_MINES  = 33
 
 def initialize(seed):
 	random.seed(seed)
@@ -118,12 +118,21 @@ def main():
 
 	continue_game = True
 	while continue_game == True:
-		try:
-			row = int(input("row: ")) - 1
-			col = int(input("col: ")) - 1
-		except:
-			print("\ninvalid input - exiting game. ")
+		row = input("row: ")
+		if row == "quit":
+			print("\nexiting game... \n")
 			break
+		try:
+			row = int(row) - 1
+		except:
+			print("\ninvalid input - try again. (type 'quit' to exit) \n")
+			continue
+		col = input("col: ")
+		try:
+			col = int(col) - 1
+		except:
+			print("\ninvalid input - try again. (type 'quit' to exit) \n")
+			continue
 
 		if row + 1 > NUM_ROWS or row + 1 <= 0 or col + 1 > NUM_COLS or col + 1 <= 0:
 			print("\ninvalid selection - try again. ")
